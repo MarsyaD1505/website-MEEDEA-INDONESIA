@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEEDEA OFFICIAL — Fashion Premium & Semi Blazer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- 
+=======================================================
+  ✅ EMAILJS — untuk notifikasi email otomatis ke Meedea
+  Daftar gratis di: https://www.emailjs.com
+  Lalu ganti nilai di bagian KONFIGURASI EMAILJS di bawah
+=======================================================
+-->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #fafaf8;
+    --cream: #f5f0e8;
+    --accent: #c4a882;
+    --accent-dark: #8b6f4e;
+    --gray: #888;
+    --light-gray: #e8e4dc;
+    --text: #1a1a1a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300;
+    letter-spacing: 0.3em; color: var(--black); text-decoration: none;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  /* Logo brand di nav */
+  .nav-logo img.brand-logo-nav {
+    height: 36px; width: auto; object-fit: contain;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent-dark); }
+  .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
+  .cart-btn {
+    background: var(--black); color: var(--white);
+    border: none; cursor: pointer;
+    padding: 0.5rem 1.2rem; font-size: 0.75rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: background 0.2s;
+  }
+  .cart-btn:hover { background: var(--accent-dark); }
+  .cart-count {
+    background: var(--accent); color: var(--white);
+    border-radius: 50%; width: 18px; height: 18px;
+    font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
+    font-weight: 500;
+  }
+
+  /* HERO */
+  #beranda {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 0 3rem;
+    background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .hero-content { max-width: 600px; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent-dark); margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--black); margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: var(--accent-dark); }
+  .hero-desc { font-size: 0.95rem; color: var(--gray); line-height: 1.8; margin-bottom: 2.5rem; max-width: 420px; }
+  .btn-primary {
+    background: var(--black); color: var(--white);
+    border: none; cursor: pointer;
+    padding: 1rem 2.5rem; font-size: 0.75rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s; display: inline-block;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-outline {
+    background: transparent; color: var(--black);
+    border: 1px solid var(--black); cursor: pointer;
+    padding: 0.9rem 2.5rem; font-size: 0.75rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s; margin-left: 1rem;
+  }
+  .btn-outline:hover { background: var(--black); color: var(--white); }
+
+  /* HERO IMAGE WRAP - dengan logo brand di sudut */
+  .hero-img-wrap {
+    position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
+    width: 42%; height: 80%;
+    overflow: hidden; border-radius: 4px;
+  }
+  .hero-img-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, #d4b896 0%, #8b6f4e 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem; color: rgba(255,255,255,0.7);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; letter-spacing: 0.1em;
+  }
+  /* Logo brand overlay di pojok kanan bawah hero image */
+  .hero-brand-logo {
+    position: absolute;
+    bottom: 1.2rem; right: 1.2rem;
+    z-index: 5;
+    background: rgba(250,250,248,0.88);
+    backdrop-filter: blur(6px);
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-brand-logo img {
+    height: 40px; width: auto; object-fit: contain;
+    display: block;
+  }
+  /* Fallback teks kalau logo belum ada */
+  .hero-brand-logo .logo-text-fallback {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 600;
+    letter-spacing: 0.2em; color: var(--black);
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    background: var(--black); color: var(--white);
+    padding: 0.9rem 0; overflow: hidden;
+  }
+  .marquee-inner { display: flex; animation: marquee 20s linear infinite; white-space: nowrap; }
+  .marquee-inner span {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0 3rem; color: var(--accent);
+  }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* SECTION HEADINGS */
+  .section { padding: 5rem 3rem; }
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+  .section-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent-dark); margin-bottom: 1rem; display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--black);
+  }
+
+  /* FILTER */
+  .filter-bar {
+    display: flex; gap: 0.5rem; justify-content: center;
+    margin-bottom: 3rem; flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 0.4rem 1.2rem; border: 1px solid var(--light-gray);
+    background: transparent; cursor: pointer; font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+    color: var(--gray);
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--black); color: var(--white); border-color: var(--black);
+  }
+
+  /* PRODUCTS GRID */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+  .product-card {
+    cursor: pointer; transition: transform 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .product-card:hover { transform: translateY(-4px); }
+
+  /* PRODUCT IMAGE WRAPPER — dengan logo brand di pojok */
+  .product-img {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--cream);
+    overflow: hidden; position: relative; margin-bottom: 1rem;
+  }
+  .product-img img {
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
+  }
+  .product-card:hover .product-img img { transform: scale(1.04); }
+  .product-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--black); color: var(--white);
+    font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.25rem 0.6rem; z-index: 2;
+  }
+  .product-add {
+    position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+    background: var(--black); color: var(--white);
+    border: none; cursor: pointer; padding: 0.6rem 1.5rem;
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; opacity: 0; transition: opacity 0.3s;
+    white-space: nowrap; z-index: 2;
+  }
+  .product-card:hover .product-add { opacity: 1; }
+
+  /* Logo brand di sudut kanan atas tiap produk */
+  .product-brand-logo {
+    position: absolute;
+    top: 0.6rem; right: 0.6rem;
+    z-index: 3;
+    background: rgba(250,250,248,0.85);
+    backdrop-filter: blur(4px);
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-brand-logo img {
+    height: 22px; width: auto; object-fit: contain; display: block;
+  }
+  .product-brand-logo .logo-text-fallback {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.15em; color: var(--black);
+  }
+
+  .product-name { font-size: 0.85rem; font-weight: 400; color: var(--black); margin-bottom: 0.3rem; }
+  .product-category { font-size: 0.7rem; color: var(--gray); margin-bottom: 0.5rem; text-transform: capitalize; }
+  .product-price { font-size: 0.9rem; font-weight: 500; color: var(--black); }
+  .product-price-old {
+    font-size: 0.8rem; color: var(--gray);
+    text-decoration: line-through; margin-right: 0.5rem;
+  }
+
+  /* VARIANT SELECTORS */
+  .variant-options-wrap { margin: 0.5rem 0; }
+  .option-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray); margin-bottom: 0.25rem; }
+  .color-dots { display: flex; gap: 0.4rem; margin-bottom: 0.5rem; }
+  .color-dot {
+    width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--light-gray);
+    cursor: pointer; position: relative; overflow: hidden; background-size: cover; background-position: center;
+  }
+  .color-dot.active { border: 2px solid var(--black); transform: scale(1.1); }
+  .size-boxes { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+  .size-box {
+    padding: 0.2rem 0.5rem; border: 1px solid var(--light-gray); font-size: 0.65rem; cursor: pointer; text-transform: uppercase;
+  }
+  .size-box.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+  /* ABOUT / ALAMAT */
+  #alamat { background: var(--cream); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-deco {
+    width: 100%; aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    border-radius: 50% 20% 60% 20%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem;
+  }
+  .about-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; margin-bottom: 1.5rem; line-height: 1.2;
+  }
+  .about-content p { color: var(--gray); line-height: 1.9; margin-bottom: 1.5rem; font-size: 0.9rem; }
+  .store-info { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .store-info-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem; background: var(--white); border-radius: 4px;
+  }
+  .store-info-icon { font-size: 1.2rem; }
+  .store-info-text h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .store-info-text p { font-size: 0.85rem; color: var(--gray); margin: 0; }
+
+  /* CART SIDEBAR */
+  .cart-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s;
+  }
+  .cart-overlay.open { opacity: 1; visibility: visible; }
+  .cart-sidebar {
+    position: fixed; right: 0; top: 0; bottom: 0; width: 420px;
+    background: var(--white); z-index: 2001;
+    transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    display: flex; flex-direction: column;
+  }
+  .cart-sidebar.open { transform: translateX(0); }
+  .cart-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cart-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 300;
+  }
+  .close-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 1.2rem; color: var(--gray); transition: color 0.2s;
+  }
+  .close-btn:hover { color: var(--black); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .cart-empty {
+    text-align: center; color: var(--gray);
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+    margin-top: 3rem;
+  }
+  .cart-item {
+    display: flex; gap: 1rem; margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem; border-bottom: 1px solid var(--light-gray);
+  }
+  .cart-item-img {
+    width: 70px; height: 90px; background: var(--cream);
+    flex-shrink: 0; overflow: hidden;
+  }
+  .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 0.85rem; font-weight: 400; margin-bottom: 0.1rem; }
+  .cart-item-meta { font-size: 0.7rem; color: var(--accent-dark); margin-bottom: 0.4rem; font-weight: 500; }
+  .cart-item-price { font-size: 0.8rem; color: var(--gray); margin-bottom: 0.8rem; }
+  .cart-item-qty { display: flex; align-items: center; gap: 0.5rem; }
+  .qty-btn {
+    width: 24px; height: 24px; border: 1px solid var(--light-gray);
+    background: none; cursor: pointer; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .qty-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+  .qty-num { font-size: 0.85rem; min-width: 24px; text-align: center; }
+  .remove-item {
+    background: none; border: none; cursor: pointer;
+    color: var(--gray); font-size: 0.75rem;
+    margin-left: auto; align-self: flex-start;
+    text-decoration: underline; transition: color 0.2s;
+  }
+  .remove-item:hover { color: #c00; }
+  .cart-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--light-gray);
+  }
+  .cart-total {
+    display: flex; justify-content: space-between;
+    margin-bottom: 1rem; font-size: 0.9rem;
+  }
+  .cart-total span:last-child { font-weight: 500; }
+  .checkout-btn {
+    width: 100%; background: var(--black); color: var(--white);
+    border: none; cursor: pointer; padding: 1rem;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .checkout-btn:hover { background: var(--accent-dark); }
+
+  /* CHECKOUT MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 3000; display: none; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white); max-width: 580px; width: 100%;
+    max-height: 90vh; overflow-y: auto;
+    padding: 2.5rem;
+  }
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300; margin-bottom: 2rem;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block; font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gray); margin-bottom: 0.5rem;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; border: 1px solid var(--light-gray);
+    padding: 0.75rem 1rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+    background: var(--white); color: var(--text);
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--accent-dark);
+  }
+  .form-group textarea { height: 80px; resize: none; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .payment-methods { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin: 1rem 0; }
+  .payment-opt {
+    border: 1px solid var(--light-gray); padding: 0.8rem;
+    cursor: pointer; transition: all 0.2s; text-align: center;
+    font-size: 0.8rem;
+  }
+  .payment-opt.selected { border-color: var(--black); background: var(--cream); }
+  .payment-opt .pay-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+  .payment-opt .pay-name { font-size: 0.7rem; letter-spacing: 0.05em; }
+  .order-summary {
+    background: var(--cream); padding: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .order-summary h4 {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1rem; color: var(--gray);
+  }
+  .order-row {
+    display: flex; justify-content: space-between;
+    font-size: 0.85rem; margin-bottom: 0.5rem;
+  }
+  .order-row.total {
+    border-top: 1px solid var(--light-gray); margin-top: 0.8rem;
+    padding-top: 0.8rem; font-weight: 500;
+  }
+
+  /* INFO NOTES */
+  .wa-note {
+    background: #e8f5e9; border-left: 3px solid #4caf50;
+    padding: 0.8rem 1rem; margin-bottom: 1.5rem;
+    font-size: 0.8rem; color: #2e7d32; line-height: 1.6;
+  }
+  .email-note {
+    background: #e3f2fd; border-left: 3px solid #1976d2;
+    padding: 0.8rem 1rem; margin-bottom: 1.5rem;
+    font-size: 0.8rem; color: #0d47a1; line-height: 1.6;
+    display: none;
+  }
+  .ongkir-note {
+    font-size: 0.75rem; color: var(--accent-dark);
+    margin-top: 0.4rem; font-style: italic;
+  }
+
+  .modal-actions { display: flex; gap: 1rem; }
+  .modal-actions button { flex: 1; }
+
+  /* SUCCESS MODAL */
+  .success-modal {
+    text-align: center; padding: 3rem;
+    background: var(--white);
+    max-width: 420px; width: 100%;
+  }
+  .success-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+  .success-modal h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem;
+  }
+  .success-modal p { color: var(--gray); font-size: 0.85rem; line-height: 1.8; margin-bottom: 2rem; }
+  .success-modal .success-method-info {
+    background: var(--cream); padding: 1rem;
+    border-radius: 4px; margin-bottom: 1.5rem;
+    font-size: 0.82rem; color: var(--text); line-height: 1.7;
+  }
+
+  /* LOADING SPINNER */
+  .btn-loading {
+    opacity: 0.7; pointer-events: none; position: relative;
+  }
+  .btn-loading::after {
+    content: ""; display: inline-block;
+    width: 12px; height: 12px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: white; border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-left: 8px; vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* FOOTER */
+  footer {
+    background: var(--black); color: var(--white);
+    padding: 4rem 3rem 2rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand .nav-logo { color: var(--white); display: flex; margin-bottom: 1rem; }
+  .footer-brand .nav-logo img.brand-logo-nav { filter: brightness(0) invert(1); }
+  .footer-brand p { font-size: 0.8rem; color: #888; line-height: 1.8; }
+  .footer-col h4 {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.8rem; color: #888; text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid #1a1a1a; padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 0.75rem; color: #555; }
+
+  /* WA FLOAT */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+    background: #25d366; color: white; width: 56px; height: 56px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none; transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #beranda { padding: 6rem 1.5rem 3rem; flex-direction: column; min-height: auto; }
+    .hero-img-wrap { display: none; }
+    .section { padding: 3rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-deco { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .cart-sidebar { width: 100%; }
+    .form-row { grid-template-columns: 1fr; }
+    .modal { padding: 1.5rem; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.8s ease forwards; }
+  .fade-up-2 { animation: fadeUp 0.8s 0.2s ease forwards; opacity: 0; }
+  .fade-up-3 { animation: fadeUp 0.8s 0.4s ease forwards; opacity: 0; }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <a href="#beranda" class="nav-logo">
+    <!--
+      🔧 GANTI INI — Logo di navbar
+      Ganti URL di bawah dengan link gambar logomu
+      Contoh: src="https://i.ibb.co/xxxxx/logo.png"
+      Kalau belum punya logo, hapus tag <img> dan tulis: MEEDEA
+    -->
+    <img class="brand-logo-nav" src="LOGO_URL_DISINI" alt="Meedea Official"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+    <span style="display:none">MEEDEA</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#beranda">Beranda</a></li>
+    <li><a href="#produk">Produk</a></li>
+    <li><a href="#alamat">Tentang</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="openCart()">
+      🛍 Keranjang
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section id="beranda">
+  <div class="hero-content">
+    <p class="hero-eyebrow fade-up">MEEDEA OFFICIAL</p>
+    <h1 class="hero-title fade-up-2">
+      Fashion Premium<br>& <em>Semi Blazer</em>
+    </h1>
+    <p class="hero-desc fade-up-3">
+      Kami menyediakan pakaian premium & elegan yang dirancang untukmu yang ingin tampil percaya diri dengan bahan berkualitas, potongan modern, dan desain yang timeless.
+    </p>
+    <div class="fade-up-3">
+      <a href="#produk" class="btn-primary">Lihat Koleksi</a>
+      <button class="btn-outline" onclick="openCart()">Keranjang Saya</button>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <div class="hero-img-placeholder">
+      <span style="font-size:5rem">✨</span>
+      <span>Elegant & Timeless</span>
+    </div>
+    <!-- Logo brand di pojok hero image -->
+    <div class="hero-brand-logo">
+      <!--
+        🔧 GANTI INI — Logo di hero image
+        Ganti URL sama dengan logo navbar
+      -->
+      <img src="LOGO_URL_DISINI" alt="Meedea"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+      <span class="logo-text-fallback" style="display:none">MEEDEA</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span>Fashion Premium</span><span>•</span>
+    <span>Ongkir Flat Purwakarta</span><span>•</span>
+    <span>Pembayaran Aman</span><span>•</span>
+    <span>Kualitas Terjamin</span><span>•</span>
+    <span>Original Brand</span><span>•</span>
+    <span>Fashion Premium</span><span>•</span>
+    <span>Ongkir Flat Purwakarta</span><span>•</span>
+    <span>Pembayaran Aman</span><span>•</span>
+    <span>Kualitas Terjamin</span><span>•</span>
+    <span>Original Brand</span><span>•</span>
+  </div>
+</div>
+
+<!-- ===================== PRODUK ===================== -->
+<section id="produk" class="section">
+  <div class="section-header">
+    <span class="section-eyebrow">Koleksi Kami</span>
+    <h2 class="section-title">Pilihan Produk</h2>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProduct('semua', this)">Semua</button>
+    <button class="filter-btn" onclick="filterProduct('atasan', this)">Atasan</button>
+    <button class="filter-btn" onclick="filterProduct('oneset', this)">Oneset</button>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- ===================== TENTANG ===================== -->
+<section id="alamat" class="section">
+  <div class="about-grid">
+    <div class="about-deco">🏪</div>
+    <div class="about-content">
+      <span class="section-eyebrow">Tentang Toko</span>
+      <h2>MEEDEA OFFICIAL</h2>
+      <p>
+        Kami menyediakan pakaian premium & elegan yang dirancang untukmu yang ingin tampil percaya diri dengan bahan berkualitas, potongan modern, dan desain yang timeless. Setiap produk kami pilih dengan teliti untuk memastikan kualitas terbaik sampai ke tanganmu.
+      </p>
+      <div class="store-info">
+        <div class="store-info-item">
+          <span class="store-info-icon">📍</span>
+          <div class="store-info-text">
+            <h4>Alamat</h4>
+            <p>Purwakarta, Jawa Barat</p>
+          </div>
+        </div>
+        <div class="store-info-item">
+          <span class="store-info-icon">⏰</span>
+          <div class="store-info-text">
+            <h4>Jam Operasional</h4>
+            <p>Senin – Minggu: 08.00 – 20.00 WIB</p>
+          </div>
+        </div>
+        <div class="store-info-item">
+          <span class="store-info-icon">📱</span>
+          <div class="store-info-text">
+            <h4>Kontak & Web</h4>
+            <p>WhatsApp: 0821-2448-6398<br>Web: meedeaofficial.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="nav-logo">
+        <img class="brand-logo-nav" src="LOGO_URL_DISINI" alt="Meedea Official"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+        <span style="display:none">MEEDEA</span>
+      </span>
+      <p>Fashion premium & semi blazer yang berbicara lewat setiap detail. Kami berkomitmen menghadirkan pengalaman berbelanja terbaik.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigasi</h4>
+      <ul>
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#alamat">Tentang</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Bantuan</h4>
+      <ul>
+        <li><a href="#">Cara Pesan</a></li>
+        <li><a href="#">Pengiriman</a></li>
+        <li><a href="#">Pengembalian</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Sosial Media</h4>
+      <ul>
+        <!--
+          🔧 GANTI INI — link sosmed
+          Ganti href="#" dengan link akun masing-masing
+        -->
+        <li><a href="#" id="linkInstagram" target="_blank">Instagram</a></li>
+        <li><a href="#" id="linkTikTok" target="_blank">TikTok</a></li>
+        <li><a href="#" id="linkShopee" target="_blank">Shopee</a></li>
+        <li><a href="#" id="linkWA">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 MEEDEA OFFICIAL. All rights reserved.</p>
+    <p>Self manufactured</p>
+  </div>
+</footer>
+
+<!-- WA Float Button -->
+<a class="wa-float" id="waFloatLink" href="#" target="_blank" title="Chat WhatsApp">💬</a>
+
+<!-- ===================== CART SIDEBAR ===================== -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Keranjang Belanja</h3>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Keranjangmu masih kosong 🛍</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">Rp 0</span>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout()">Lanjutkan Pembayaran →</button>
+  </div>
+</div>
+
+<!-- ===================== CHECKOUT MODAL ===================== -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <h2 class="modal-title">Detail Pemesanan</h2>
+
+    <!-- Ringkasan Pesanan -->
+    <div class="order-summary">
+      <h4>Ringkasan Pesanan</h4>
+      <div id="summaryItems"></div>
+      <div class="order-row">
+        <span>Subtotal</span><span id="summarySubtotal">Rp 0</span>
+      </div>
+      <div class="order-row">
+        <span>Ongkos Kirim</span>
+        <span id="summaryOngkir">—</span>
+      </div>
+      <div id="ongkirNote" class="ongkir-note" style="display:none"></div>
+      <div class="order-row total">
+        <span>Total Bayar</span><span id="summaryTotal">Rp 0</span>
+      </div>
+    </div>
+
+    <!-- Data Pemesan -->
+    <div class="form-group">
+      <label>Nama Lengkap *</label>
+      <input type="text" id="formNama" placeholder="Masukkan nama lengkap">
+    </div>
+    <div class="form-group">
+      <label>Nomor WhatsApp *</label>
+      <input type="tel" id="formWA" placeholder="Contoh: 08000000000">
+    </div>
+    <div class="form-group">
+      <label>Alamat Lengkap *</label>
+      <textarea id="formAlamat" placeholder="Masukan Alamat secara Lengkap"></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Kota / Domisili *</label>
+        <input type="text" id="formKota" placeholder="Contoh: Purwakarta" oninput="updateOngkir()">
+      </div>
+      <div class="form-group">
+        <label>Kode Pos *</label>
+        <input type="text" id="formKodePos" placeholder="Kode Pos">
+      </div>
+    </div>
+
+    <!-- Metode Pembayaran -->
+    <div class="form-group" id="paymentMethodGroup">
+      <label>Metode Pembayaran *</label>
+      <div class="payment-methods" id="paymentMethods">
+        <div class="payment-opt selected" onclick="selectPayment(this, 'Transfer Bank')">
+          <div class="pay-icon">🏦</div>
+          <div class="pay-name">Transfer Bank</div>
+        </div>
+        <div class="payment-opt" onclick="selectPayment(this, 'QRIS')">
+          <div class="pay-icon">📱</div>
+          <div class="pay-name">QRIS</div>
+        </div>
+        <div class="payment-opt" onclick="selectPayment(this, 'ShopeePay')">
+          <div class="pay-icon">🛍️</div>
+          <div class="pay-name">ShopeePay</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metode Konfirmasi Pesanan -->
+    <div class="form-group" id="orderMethodGroup">
+      <label>Konfirmasi Pesanan via *</label>
+      <div class="payment-methods" id="orderMethods">
+        <div class="payment-opt selected" onclick="selectOrderMethod(this, 'WhatsApp')">
+          <div class="pay-icon">💬</div>
+          <div class="pay-name">WhatsApp</div>
+        </div>
+        <div class="payment-opt" onclick="selectOrderMethod(this, 'Email')">
+          <div class="pay-icon">✉️</div>
+          <div class="pay-name">Email</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email field (muncul kalau pilih Email) -->
+    <div class="form-group" id="emailField" style="display:none;">
+      <label>Email Kamu *</label>
+      <input type="email" id="formEmail" placeholder="contoh@email.com">
+    </div>
+
+    <!-- Info note (berubah sesuai metode konfirmasi) -->
+    <div class="wa-note" id="waNoteBox">
+      💬 <strong>Konfirmasi via WhatsApp</strong><br>
+      Klik "Pesan Sekarang" → chat WhatsApp ke Meedea sudah siap terisi otomatis. Kamu tinggal tekan <strong>Kirim</strong> saja!
+    </div>
+    <div class="email-note" id="emailNoteBox">
+      ✉️ <strong>Konfirmasi via Email</strong><br>
+      Pesanan akan terkirim otomatis ke email Meedea, dan kamu juga akan menerima notifikasi di email-mu. Tim kami akan segera memproses pesananmu!
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="closeCheckout()" style="padding:0.9rem">Kembali</button>
+      <button class="btn-primary" id="submitBtn" onclick="submitOrder()" style="padding:1rem 2rem;flex:2">
+        Pesan Sekarang
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SUCCESS MODAL ===================== -->
+<div class="modal-overlay" id="successModal">
+  <div class="success-modal">
+    <div class="success-icon">✅</div>
+    <h2>Pesanan Terkirim!</h2>
+    <div class="success-method-info" id="successMethodInfo"></div>
+    <p>
+      Terima kasih sudah berbelanja di <strong>MEEDEA OFFICIAL</strong>! 🛍<br>
+      Tim kami akan segera mengkonfirmasi pesananmu dalam 1×24 jam.
+    </p>
+    <button class="btn-primary" onclick="closeSuccess()">Tutup</button>
+  </div>
+</div>
+
+<!-- ===================== SCRIPT ===================== -->
+<script>
+
+// ============================================================
+//  🔧 KONFIGURASI — GANTI BAGIAN INI SESUAI MILIKMU
+// ============================================================
+
+// Nomor WA toko (format: 62xxxxx tanpa + atau spasi)
+const NOMOR_WA_TOKO = "6281386110104"; // 🔧 GANTI JIKA PERLU
+
+// Email toko Meedea yang menerima notif pesanan
+const EMAIL_TOKO = "EMAILMEEDEA@gmail.com"; // 🔧 GANTI dengan email Meedea yang benar
+
+// URL Logo (gunakan link gambar langsung, misal dari ibb.co atau Google Drive)
+// Contoh: "https://i.ibb.co/xxxxxx/logo.png"
+const LOGO_URL = "LOGO_URL_DISINI"; // 🔧 GANTI dengan URL logo
+
+// -------------------------------------------------------
+// EmailJS — untuk kirim email otomatis ke Meedea
+// Langkah setup (gratis, 200 email/bulan):
+//   1. Daftar di https://www.emailjs.com
+//   2. Buat service (Gmail) → catat SERVICE_ID
+//   3. Buat template email → catat TEMPLATE_ID
+//      Di template pakai variabel: {{order_text}}, {{from_name}}, {{reply_to}}
+//   4. Copy Public Key dari dashboard → catat PUBLIC_KEY
+// -------------------------------------------------------
+const EMAILJS_SERVICE_ID  = "SERVICE_ID_DISINI";   // 🔧 GANTI
+const EMAILJS_TEMPLATE_ID = "TEMPLATE_ID_DISINI";  // 🔧 GANTI
+const EMAILJS_PUBLIC_KEY  = "PUBLIC_KEY_DISINI";   // 🔧 GANTI
+
+// ============================================================
+//  DATA PRODUK
+// ============================================================
+const products = [
+  {
+    id: 1,
+    name: "ARABELA",
+    category: "atasan",
+    price: 150000,
+    oldPrice: 200000,
+    badge: "Sale",
+    colors: [
+      { name: "Broken White", img: "https://i.ibb.co/xK9pN6RF/IMG-9594-1.jpg" },
+      { name: "Black",        img: "https://i.ibb.co/xK9pN6RF/IMG-9594-1.jpg" }, // 🔧 Ganti img Black
+    ],
+    sizes: ["M", "L", "XL"]
+  },
+  {
+    id: 2,
+    name: "KEYLA",
+    category: "atasan",
+    price: 180000,
+    oldPrice: null,
+    badge: "New",
+    colors: [
+      { name: "Cacao", img: "https://i.ibb.co/0VrybBTV/IMG-3164.jpg" },
+    ],
+    sizes: ["M", "L"]
+  }
+  // 🔧 Tambah produk baru di sini dengan format yang sama
+];
+
+// ============================================================
+//  RUNTIME
+// ============================================================
+let selectedVariants = {};
+let cart = [];
+let selectedPayment    = "Transfer Bank";
+let selectedOrderMethod = "WhatsApp";
+let currentFilter      = "semua";
+
+function formatRupiah(n) {
+  return "Rp " + n.toLocaleString("id-ID");
+}
+
+// ---- RENDER PRODUCTS ----
+function renderProducts(filter) {
+  if (filter !== undefined) currentFilter = filter;
+  const grid = document.getElementById("productsGrid");
+  const filtered = currentFilter === "semua"
+    ? products
+    : products.filter(p => p.category === currentFilter);
+
+  grid.innerHTML = filtered.map(p => {
+    if (!selectedVariants[p.id]) {
+      selectedVariants[p.id] = {
+        color: p.colors[0].name,
+        img:   p.colors[0].img,
+        size:  p.sizes[0]
+      };
+    }
+    const v = selectedVariants[p.id];
+
+    const colorHtml = p.colors.map(c => `
+      <div class="color-dot ${c.name === v.color ? 'active' : ''}"
+           style="background-image: url('${c.img}')"
+           title="${c.name}"
+           onclick="changeProductColor(${p.id}, '${c.name}', '${c.img}')">
+      </div>
+    `).join("");
+
+    const sizeHtml = p.sizes.map(s => `
+      <div class="size-box ${s === v.size ? 'active' : ''}"
+           onclick="changeProductSize(${p.id}, '${s}')">
+        ${s}
+      </div>
+    `).join("");
+
+    // Logo brand di atas tiap produk
+    const logoHtml = `
+      <div class="product-brand-logo">
+        <img src="${LOGO_URL}" alt="Meedea"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <span class="logo-text-fallback" style="display:none">M</span>
+      </div>
+    `;
+
+    return `
+      <div class="product-card" id="prod-card-${p.id}">
+        <div class="product-img">
+          <img id="main-img-${p.id}" src="${v.img}" alt="${p.name}">
+          ${logoHtml}
+          ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ""}
+          <button class="product-add" onclick="addToCart(${p.id})">+ Tambah Ke Keranjang</button>
+        </div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-category">${p.category}</div>
+        <div class="product-price">
+          ${p.oldPrice ? `<span class="product-price-old">${formatRupiah(p.oldPrice)}</span>` : ""}
+          ${formatRupiah(p.price)}
+        </div>
+        <div class="variant-options-wrap">
+          <div class="option-title">Pilih Warna:</div>
+          <div class="color-dots">${colorHtml}</div>
+          <div class="option-title">Pilih Ukuran:</div>
+          <div class="size-boxes">${sizeHtml}</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function changeProductColor(prodId, colorName, imgUrl) {
+  selectedVariants[prodId].color = colorName;
+  selectedVariants[prodId].img   = imgUrl;
+  renderProducts();
+}
+
+function changeProductSize(prodId, sizeName) {
+  selectedVariants[prodId].size = sizeName;
+  renderProducts();
+}
+
+function filterProduct(cat, btn) {
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderProducts(cat);
+}
+
+// ---- CART ----
+function addToCart(id) {
+  const p  = products.find(x => x.id === id);
+  const v  = selectedVariants[id];
+  const key = `${id}-${v.color}-${v.size}`;
+  const existing = cart.find(x => x.cartKey === key);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ cartKey: key, id: p.id, name: p.name, price: p.price,
+                color: v.color, size: v.size, image: v.img, qty: 1 });
+  }
+  updateCartUI();
+  openCart();
+}
+
+function removeFromCart(key) {
+  cart = cart.filter(x => x.cartKey !== key);
+  updateCartUI();
+}
+
+function changeQty(key, delta) {
+  const item = cart.find(x => x.cartKey === key);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) { removeFromCart(key); return; }
+  updateCartUI();
+}
+
+function updateCartUI() {
+  const count = cart.reduce((s, x) => s + x.qty, 0);
+  const total = cart.reduce((s, x) => s + x.price * x.qty, 0);
+  document.getElementById("cartCount").textContent = count;
+  document.getElementById("cartTotal").textContent = formatRupiah(total);
+  const container = document.getElementById("cartItems");
+  if (cart.length === 0) {
+    container.innerHTML = `<p class="cart-empty">Keranjangmu masih kosong 🛍</p>`;
+    return;
+  }
+  container.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-img"><img src="${item.image}" alt="${item.name}"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-meta">Varian: ${item.color} (${item.size})</div>
+        <div class="cart-item-price">${formatRupiah(item.price)}</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty('${item.cartKey}',-1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${item.cartKey}',1)">+</button>
+          <button class="remove-item" onclick="removeFromCart('${item.cartKey}')">Hapus</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function openCart() {
+  document.getElementById("cartOverlay").classList.add("open");
+  document.getElementById("cartSidebar").classList.add("open");
+}
+function closeCart() {
+  document.getElementById("cartOverlay").classList.remove("open");
+  document.getElementById("cartSidebar").classList.remove("open");
+}
+
+// ---- PAYMENT & ORDER METHOD ----
+function selectPayment(el, method) {
+  document.querySelectorAll("#paymentMethods .payment-opt").forEach(e => e.classList.remove("selected"));
+  el.classList.add("selected");
+  selectedPayment = method;
+}
+
+function selectOrderMethod(el, method) {
+  document.querySelectorAll("#orderMethods .payment-opt").forEach(e => e.classList.remove("selected"));
+  el.classList.add("selected");
+  selectedOrderMethod = method;
+  document.getElementById("emailField").style.display = (method === "Email") ? "block" : "none";
+  document.getElementById("waNoteBox").style.display   = (method === "WhatsApp") ? "block" : "none";
+  document.getElementById("emailNoteBox").style.display = (method === "Email") ? "block" : "none";
+}
+
+// ---- ONGKIR LOGIC ----
+// Purwakarta = Rp 10.000 flat
+// Luar Purwakarta = dikonfirmasi via WA
+function getOngkirInfo(kotaInput) {
+  const lower = (kotaInput || "").trim().toLowerCase();
+  if (lower === "purwakarta") {
+    return { ongkir: 10000, text: formatRupiah(10000), note: "📍 Ongkir flat Purwakarta", showNote: true };
+  }
+  if (lower.length > 0) {
+    return { ongkir: 0, text: "Menyusul", note: "ℹ️ Ongkir luar Purwakarta akan dikonfirmasi via WhatsApp setelah pesanan masuk.", showNote: true };
+  }
+  return { ongkir: 0, text: "—", note: "", showNote: false };
+}
+
+function updateOngkir() {
+  const kota = document.getElementById("formKota").value;
+  const { ongkir, text, note, showNote } = getOngkirInfo(kota);
+  const subtotal = cart.reduce((s, x) => s + x.price * x.qty, 0);
+
+  document.getElementById("summaryOngkir").textContent = text;
+  const noteEl = document.getElementById("ongkirNote");
+  noteEl.textContent = note;
+  noteEl.style.display = showNote ? "block" : "none";
+
+  const total = ongkir > 0 ? subtotal + ongkir : subtotal;
+  document.getElementById("summaryTotal").textContent = formatRupiah(total);
+}
+
+// ---- CHECKOUT ----
+function openCheckout() {
+  if (cart.length === 0) { alert("Keranjang masih kosong."); return; }
+  const subtotal = cart.reduce((s, x) => s + x.price * x.qty, 0);
+  document.getElementById("summaryItems").innerHTML = cart.map(i =>
+    `<div class="order-row">
+      <span>${i.name} [${i.color} / ${i.size}] ×${i.qty}</span>
+      <span>${formatRupiah(i.price * i.qty)}</span>
+    </div>`
+  ).join("");
+  document.getElementById("summarySubtotal").textContent = formatRupiah(subtotal);
+  document.getElementById("summaryOngkir").textContent = "—";
+  document.getElementById("summaryTotal").textContent = formatRupiah(subtotal);
+  document.getElementById("ongkirNote").style.display = "none";
+  updateOngkir();
+  closeCart();
+  document.getElementById("checkoutModal").classList.add("open");
+}
+
+function closeCheckout() {
+  document.getElementById("checkoutModal").classList.remove("open");
+}
+
+// ---- BUILD ORDER TEXT ----
+function buildOrderText(nama, wa, alamat, kota, kodepos, subtotal, ongkirText, total, orderNo) {
+  const itemList = cart.map(i =>
+    `• ${i.name}\n  Varian: ${i.color} (${i.size})\n  Jumlah: ${i.qty} x ${formatRupiah(i.price)} = ${formatRupiah(i.price * i.qty)}`
+  ).join("\n\n");
+
+  return `🛍 *PESANAN BARU — MEEDEA OFFICIAL*
+━━━━━━━━━━━━━━━━━━━
+🔖 No. Pesanan: *${orderNo}*
+
+👤 *DATA PEMESAN*
+Nama     : ${nama}
+WhatsApp : ${wa}
+Alamat   : ${alamat}
+Kota     : ${kota} ${kodepos}
+
+🧾 *DETAIL PESANAN*
+${itemList}
+
+━━━━━━━━━━━━━━━━━━━
+Subtotal      : ${formatRupiah(subtotal)}
+Ongkos Kirim  : ${ongkirText}
+*Total Bayar  : ${formatRupiah(total)}*
+
+💳 Metode Bayar: ${selectedPayment}
+
+Mohon dikonfirmasi segera, terima kasih! 🙏`.trim();
+}
+
+// ---- SUBMIT ORDER ----
+async function submitOrder() {
+  const nama     = document.getElementById("formNama").value.trim();
+  const wa       = document.getElementById("formWA").value.trim();
+  const alamat   = document.getElementById("formAlamat").value.trim();
+  const kota     = document.getElementById("formKota").value.trim();
+  const kodepos  = document.getElementById("formKodePos").value.trim();
+
+  if (!nama || !wa || !alamat || !kota || !kodepos) {
+    alert("Mohon lengkapi semua data yang wajib diisi (*) terlebih dahulu.");
+    return;
+  }
+
+  if (selectedOrderMethod === "Email") {
+    const email = document.getElementById("formEmail").value.trim();
+    if (!email) { alert("Mohon isi email terlebih dahulu."); return; }
+  }
+
+  const subtotal = cart.reduce((s, x) => s + x.price * x.qty, 0);
+  const { ongkir, text: ongkirText } = getOngkirInfo(kota);
+  const total = ongkir > 0 ? subtotal + ongkir : subtotal;
+  const orderNo = "MED" + Date.now().toString().slice(-6);
+  const pesan = buildOrderText(nama, wa, alamat, kota, kodepos, subtotal, ongkirText, total, orderNo);
+
+  const btn = document.getElementById("submitBtn");
+
+  if (selectedOrderMethod === "WhatsApp") {
+    // ------------------------------------------------
+    // VIA WHATSAPP — chat sudah terisi otomatis, tinggal tekan Kirim
+    // ------------------------------------------------
+    const url = "https://wa.me/" + NOMOR_WA_TOKO + "?text=" + encodeURIComponent(pesan);
+    window.open(url, "_blank");
+    showSuccess("wa", nama, orderNo);
+
+  } else {
+    // ------------------------------------------------
+    // VIA EMAIL — kirim ke EmailJS (email otomatis ke Meedea + notif ke customer)
+    // ------------------------------------------------
+    const customerEmail = document.getElementById("formEmail").value.trim();
+
+    btn.textContent = "Mengirim...";
+    btn.classList.add("btn-loading");
+
+    try {
+      // Cek apakah EmailJS sudah dikonfigurasi
+      if (EMAILJS_PUBLIC_KEY === "PUBLIC_KEY_DISINI") {
+        // Fallback: buka mailto jika EmailJS belum dikonfigurasi
+        const subject = encodeURIComponent("Pesanan Baru MEEDEA OFFICIAL — " + orderNo);
+        const body    = encodeURIComponent(pesan);
+        window.location.href = `mailto:${EMAIL_TOKO}?subject=${subject}&body=${body}`;
+        showSuccess("email-fallback", nama, orderNo);
+      } else {
+        // EmailJS sudah dikonfigurasi — kirim otomatis
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          to_email:    EMAIL_TOKO,        // email toko Meedea penerima
+          from_name:   nama,
+          reply_to:    customerEmail,
+          order_no:    orderNo,
+          order_text:  pesan,
+          customer_wa: wa,
+        });
+        showSuccess("email", nama, orderNo);
+      }
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      alert("Gagal mengirim email. Coba lagi atau gunakan konfirmasi via WhatsApp.");
+      btn.textContent = "Pesan Sekarang";
+      btn.classList.remove("btn-loading");
+      return;
+    }
+
+    btn.textContent = "Pesan Sekarang";
+    btn.classList.remove("btn-loading");
+  }
+
+  closeCheckout();
+  cart = [];
+  updateCartUI();
+}
+
+function showSuccess(method, nama, orderNo) {
+  let info = "";
+  if (method === "wa") {
+    info = `💬 Chat WhatsApp ke Meedea sudah terbuka dan terisi otomatis.<br>Silakan tekan <strong>Kirim</strong> untuk mengirim pesananmu!`;
+  } else if (method === "email") {
+    info = `✉️ Email pesanan sudah terkirim otomatis ke Meedea.<br>Cek inbox emailmu untuk notifikasi konfirmasi.`;
+  } else {
+    info = `✉️ Aplikasi email kamu akan terbuka dengan detail pesanan.<br>Pastikan email terkirim ke Meedea ya!`;
+  }
+  document.getElementById("successMethodInfo").innerHTML = info;
+  document.getElementById("successModal").classList.add("open");
+}
+
+function closeSuccess() {
+  document.getElementById("successModal").classList.remove("open");
+}
+
+// ---- INIT ----
+window.onload = function() {
+  // Set WA links
+  document.getElementById("waFloatLink").href = "https://wa.me/" + NOMOR_WA_TOKO;
+  document.getElementById("linkWA").href      = "https://wa.me/" + NOMOR_WA_TOKO;
+
+  // Apply logo URL ke semua elemen logo
+  if (LOGO_URL && LOGO_URL !== "LOGO_URL_DISINI") {
+    document.querySelectorAll("[src='LOGO_URL_DISINI']").forEach(el => {
+      el.src = LOGO_URL;
+    });
+  }
+
+  renderProducts();
+};
+
+</script>
+</body>
+</html>
